@@ -9,7 +9,7 @@ import {
   runPartTwo,
 } from './3';
 
-describe.only('Day 3', () => {
+describe('Day 3', () => {
   describe('Part 1', () => {
     describe('parseLine', () => {
       it('splits a line into 2 equal parts', () => {
