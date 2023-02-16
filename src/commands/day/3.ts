@@ -52,7 +52,7 @@ export function runPartOne(input: string): number {
   return sum(lines.map(findSharedType).map(itemTypePriority));
 }
 
-export default class Day2 extends DayCommand implements IDayCommand {
+export default class Day3 extends DayCommand implements IDayCommand {
   public runPartOne() {
     const result = runPartOne(getDay3Input());
     this.log(`Result: ${result}`);
