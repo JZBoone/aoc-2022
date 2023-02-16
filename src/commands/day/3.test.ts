@@ -1,5 +1,13 @@
 import test, { expect } from '@oclif/test';
-import { findSharedType, itemTypePriority, parseLine, runPartOne } from './3';
+import {
+  findGroupBadgeItemType,
+  findSharedType,
+  GroupOfThree,
+  itemTypePriority,
+  parseLine,
+  runPartOne,
+  runPartTwo,
+} from './3';
 
 describe.only('Day 3', () => {
   describe('Part 1', () => {
@@ -48,6 +56,51 @@ describe.only('Day 3', () => {
         .command(['day 3'])
         .it('returns the correct value', (ctx) => {
           expect(ctx.stdout).to.contain('8493');
+        });
+    });
+  });
+  describe('Part Two', () => {
+    describe('findGroupBadgeItemType', () => {
+      it('returns correct badge type', () => {
+        expect(
+          findGroupBadgeItemType(
+            [
+              'vJrwpWtwJgWrhcsFMMfFFhFp',
+              'jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL',
+              'PmmdzqPrVvPwwTWBwg',
+            ].map(parseLine) as GroupOfThree
+          )
+        ).to.equal('r');
+        expect(
+          findGroupBadgeItemType(
+            [
+              'wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn',
+              'ttgJtRGJQctTZtZT',
+              'CrZsJsPPZsGzwwsLwLmpwMDw',
+            ].map(parseLine) as GroupOfThree
+          )
+        ).to.equal('Z');
+      });
+    });
+    describe('runPartTwo', () => {
+      it('returns correct sum for test groups', () => {
+        const testInput = `
+        vJrwpWtwJgWrhcsFMMfFFhFp
+  jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
+  PmmdzqPrVvPwwTWBwg
+  wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
+  ttgJtRGJQctTZtZT
+  CrZsJsPPZsGzwwsLwLmpwMDw
+        `;
+        expect(runPartTwo(testInput)).to.equal(70);
+      });
+    });
+    describe('command', () => {
+      test
+        .stdout()
+        .command(['day 3', '2'])
+        .it('returns the correct value', (ctx) => {
+          expect(ctx.stdout).to.contain('2552');
         });
     });
   });
